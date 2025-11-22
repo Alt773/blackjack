@@ -178,7 +178,8 @@ hr {
     transition: background-color 0.3s, color 0.3s, border-color 0.3s;
     grid-area: clear;
     color: rgb(210, 210, 210);
-    border: 3px solid white
+    border: 3px solid white;
+    visibility: hidden;
 }
 #clearbet:hover {background-color: rgb(210, 210, 210); color: rgb(52,52,52); border-color: white;}
 
@@ -406,4 +407,5 @@ hr {
     #main-main img {
         width: 40vw
     }
+
 }
