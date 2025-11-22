@@ -221,6 +221,7 @@ function clearBet() {
     document.getElementById("bmoney").innerHTML = `${playerMoney} $`
     document.getElementById("bbet").innerHTML = `Bet: ${betAmount} $`
     document.getElementById("bdeal").style.visibility ="hidden";
+    document.getElementById("clearbet").style.visibility ="hidden";
 }
 
 
@@ -254,3 +255,4 @@ function doubleDown() {
 
 
 }
+
