@@ -225,6 +225,7 @@ function clearBet() {
 
 
 function bet(amount) {
+    document.getElementById("clearbet").style.visibility = "visible";
     betAmount += amount
     console.log(betAmount)
     console.log(playerMoney)
@@ -250,5 +251,6 @@ function doubleDown() {
     document.getElementById("bbet").innerHTML = `Bet: ${betAmount} $`;
     hit()
     stand()
+
 
 }
