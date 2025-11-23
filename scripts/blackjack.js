@@ -242,7 +242,7 @@ function insYes() {
 
     
     document.getElementById("bmoney").innerHTML = `${playerMoney} $`;
-    document.getElementById("bbet").innerHTML = `Bet: ${betAmount} $`;
+    document.getElementById("bbet").innerHTML = `Bet:<br>${betAmount} $`;
 }
 
 const insButton = document.querySelectorAll(".insurance");
@@ -278,7 +278,7 @@ function insNo() {
 
     
     document.getElementById("bmoney").innerHTML = `${playerMoney} $`;
-    document.getElementById("bbet").innerHTML = `Bet: ${betAmount} $`;
+    document.getElementById("bbet").innerHTML = `Bet:<br>${betAmount} $`;
 
 }
 
@@ -337,7 +337,7 @@ function stand() {
 function clearBet() {
     betAmount = 0;
     document.getElementById("bmoney").innerHTML = `${playerMoney} $`
-    document.getElementById("bbet").innerHTML = `Bet: ${betAmount} $`
+    document.getElementById("bbet").innerHTML = `Bet:<br>${betAmount} $`
     document.getElementById("bdeal").style.visibility ="hidden";
     document.getElementById("clearbet").style.visibility ="hidden";
 }
@@ -348,13 +348,12 @@ function bet(amount) {
     document.getElementById("clearbet").style.visibility = "visible";
     betAmount += amount
     document.getElementById("bmoney").innerHTML = `${playerMoney} $`
-    document.getElementById("bbet").innerHTML = `Bet: ${betAmount} $`
+    document.getElementById("bbet").innerHTML = `Bet:<br>${betAmount} $`
     if (betAmount > 0) {document.getElementById("bdeal").style.visibility = "visible"}
     if (betAmount > playerMoney) {
         betAmount = playerMoney; alert("You can't bet more money than you have!"); 
         document.getElementById("bmoney").innerHTML = `${playerMoney} $`;
-        document.getElementById("bbet").innerHTML = `Bet: ${betAmount} $`;
-        document.getElementById("bdeal").style.visibility = "hidden"
+        document.getElementById("bbet").innerHTML = `Bet:<br>${betAmount} $`;
     }  
 }
 
@@ -362,7 +361,7 @@ function endReset() {
     document.querySelector(".pcard:nth-child(2)").style.visibility = "visible";
     document.getElementById("end").style.visibility = "visible";
     document.getElementById("bmoney").innerHTML = `${playerMoney} $`;
-    document.getElementById("bbet").innerHTML = `Bet: ${betAmount} $`;
+    document.getElementById("bbet").innerHTML = `Bet:<br>${betAmount} $`;
     playb.forEach(el => el.style.visibility ="hidden");
     document.getElementById("bdeal").style.visibility ="visible";
     document.getElementById("clearbet").style.visibility ="visible";
@@ -372,7 +371,7 @@ function doubleDown() {
     playerMoney -= betAmount
     betAmount *= 2
     document.getElementById("bmoney").innerHTML = `${playerMoney} $`;
-    document.getElementById("bbet").innerHTML = `Bet: ${betAmount} $`;
+    document.getElementById("bbet").innerHTML = `Bet:<br>${betAmount} $`;
     hit()
     stand()
 
@@ -387,4 +386,5 @@ function tempWhileNoDatabase() {
     } 
 
 }
+
 
