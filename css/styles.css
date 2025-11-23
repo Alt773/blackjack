@@ -143,16 +143,15 @@ hr {
     display: grid;
     gap: 5px;
     grid-template-areas:
-        "clear clear bet bet bet"
+        "clear clear bet none none"
         "one five tfive hundred fhundred"
         "money money money money money";
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     height: var(--bottom-bar-height);
-    left: 5vw;
     padding-bottom: 20px;
     position: absolute;
     bottom: 0;
-    width: 90vw;
+    width: 100vw;
 }
 
 
@@ -163,9 +162,10 @@ hr {
     font-size: 2vh;
     color: white;
     font-weight: bold;
+    text-align: center;
 }
 #bmoney { grid-area: money; }
-#bbet { grid-area: bet; justify-self: left;} 
+#bbet { grid-area: bet; justify-self: center;} 
 #clearbet {
     background-color: rgb(52,52,52);
     border-radius: 20px;
