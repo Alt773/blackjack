@@ -358,7 +358,7 @@ function bet(amount) {
         betAmount = playerMoney; alert("You can't bet more money than you have!"); 
         document.getElementById("bmoney").innerHTML = `${playerMoney} $`;
         document.getElementById("bbet").innerHTML = `Bet:<br>${betAmount} $`;
-    }  
+    }
 }
 
 function endReset() {
@@ -368,8 +368,8 @@ function endReset() {
     document.getElementById("bmoney").innerHTML = `${playerMoney} $`;
     document.getElementById("bbet").innerHTML = `Bet:<br>${betAmount} $`;
     playb.forEach(el => el.style.visibility ="hidden");
-    document.getElementById("bdeal").style.visibility ="visible";
-    document.getElementById("clearbet").style.visibility ="visible";
+    document.getElementById("bdeal").style.visibility ="hidden";
+    document.getElementById("clearbet").style.visibility ="hidden";
 }
 
 function doubleDown() {

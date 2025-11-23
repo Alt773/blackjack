@@ -7,7 +7,7 @@ const playHand = document.getElementById("phand");
 function updatePosition() {
     const height3 = header.offsetHeight;
     playarea.style.height = window.innerHeight - height3 +"px"
-    optionBar.style.bottom = bottomBar.offsetHeight + "px"
+    optionBar.style.bottom = bottomBar.offsetHeight + 10 + "px"
     playHand.style.bottom = bottomBar.offsetHeight + optionBar.offsetHeight + "px"
 }
 
