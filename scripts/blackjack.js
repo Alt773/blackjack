@@ -139,6 +139,8 @@ function clearTable() {
   }
 
 function deal() {
+
+    tempWhileNoDatabase()
     console.log("player's money: " + playerMoney)
     insurance = 0;
     if (betAmount == 0) {
@@ -172,10 +174,12 @@ function deal() {
 
     
     if (dealerCards[0].rank === "A") {
-        playb.forEach(el => el.style.visibility ="hidden");
-        endMsg.style.visibility = "visible";
-        endMsg.innerHTML = `Buy Insurance?<br>${Math.round(betAmount/2)} $`;
-        insButton.forEach(el => el.style.visibility ="visible");
+        if (playerMoney - Math.round(betAmount/2) >= 0){
+            playb.forEach(el => el.style.visibility ="hidden");
+            endMsg.style.visibility = "visible";
+            endMsg.innerHTML = `Buy Insurance?<br>${Math.round(betAmount/2)} $`;
+            insButton.forEach(el => el.style.visibility ="visible");
+        }
 
     }
     
@@ -346,7 +350,12 @@ function bet(amount) {
     document.getElementById("bmoney").innerHTML = `${playerMoney} $`
     document.getElementById("bbet").innerHTML = `Bet: ${betAmount} $`
     if (betAmount > 0) {document.getElementById("bdeal").style.visibility = "visible"}
-    if (betAmount > playerMoney-betAmount) {betAmount = 0; alert("Nincs")}  
+    if (betAmount > playerMoney) {
+        betAmount = 0; alert("Nem tehetsz fel többet, mint amennyi pénzed van"); 
+        document.getElementById("bmoney").innerHTML = `${playerMoney} $`;
+        document.getElementById("bbet").innerHTML = `Bet: ${betAmount} $`;
+        document.getElementById("bdeal").style.visibility = "hidden"
+    }  
 }
 
 function endReset() {
