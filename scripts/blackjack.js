@@ -198,6 +198,8 @@ function deal() {
 
         endReset()
     }
+
+    if (playerMoney - betAmount < 0) {document.getElementById("double").style.visibility ="hidden"}
 }
 
 function dealerScorekeeper() {
@@ -289,6 +291,8 @@ function hit() {
     if (calculateScore(playerCards) > 21) {
         endMsg.innerHTML = "Busted!";
 
+
+
         dealerScorekeeper()
 
         endReset()
@@ -360,6 +364,7 @@ function bet(amount) {
 function endReset() {
     document.querySelector(".pcard:nth-child(2)").style.visibility = "visible";
     document.getElementById("end").style.visibility = "visible";
+    betAmount = 0;
     document.getElementById("bmoney").innerHTML = `${playerMoney} $`;
     document.getElementById("bbet").innerHTML = `Bet:<br>${betAmount} $`;
     playb.forEach(el => el.style.visibility ="hidden");
@@ -374,8 +379,6 @@ function doubleDown() {
     document.getElementById("bbet").innerHTML = `Bet:<br>${betAmount} $`;
     hit()
     stand()
-
-
 }
 
 function tempWhileNoDatabase() {
