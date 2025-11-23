@@ -351,7 +351,7 @@ function bet(amount) {
     document.getElementById("bbet").innerHTML = `Bet: ${betAmount} $`
     if (betAmount > 0) {document.getElementById("bdeal").style.visibility = "visible"}
     if (betAmount > playerMoney) {
-        betAmount = 0; alert("Nem tehetsz fel többet, mint amennyi pénzed van"); 
+        betAmount = 0; alert("You can't bet more money than you have!"); 
         document.getElementById("bmoney").innerHTML = `${playerMoney} $`;
         document.getElementById("bbet").innerHTML = `Bet: ${betAmount} $`;
         document.getElementById("bdeal").style.visibility = "hidden"
@@ -381,8 +381,9 @@ function doubleDown() {
 
 function tempWhileNoDatabase() {
     if (playerMoney <= 0) {
-        alert("Még nincs pénz elmentve felhasználók között vagy bármi, szóval egyszerűen csak újratöltöm")
+        alert("Let's just refill your money for now")
         playerMoney = 1000;
         document.getElementById("bmoney").innerHTML = `${playerMoney} $`;
     } 
+
 }
