@@ -11,7 +11,7 @@
 </head>
 <body>
     <header id = "blackjackheader">
-        <a href="index.html" id = "goback">Go Back</a>
+        <a href="#" id = "goback" onclick ="alert('Az még nincs kész, maradj itt')">Go Back</a>
         <span id = 'bTitle'>Blackjack</span>
         <button id = 'blogin'><img src="images/main/blank-profile-picture-png.png" alt="Profile Picture" id = "ppic"></button>
     </header>
@@ -20,7 +20,11 @@
         <div id = "playarea">
             <div id = "dhand">
             </div>
-            <div id = "enddiv"><div id = "end"></div></div>
+            <div id = "enddiv">
+                <div id = "end"></div>
+                <button id = "ins-yes" class = "insurance" onclick="insYes()">Yes</button>
+                <button id = "ins-no" class = "insurance" onclick ="insNo()">No</button>    
+            </div>
             <div id = "phand">
             </div>
             <div id = "boptions">
@@ -38,7 +42,7 @@
                 <button id = "b25" onclick="bet(25)"><img src="images/chips/pokerchip25.png" alt="chip25"></button>
                 <button id = "b100" onclick="bet(100)"><img src="images/chips/pokerchip100.png" alt="chip100"></button>
                 <button id = "b500" onclick="bet(500)"><img src="images/chips/pokerchip500.png" alt="chip500"></button>
-            <div id = "bmoney">0 $</div>
+            <div id = "bmoney">1000 $</div>
             </div>
         </div>
         

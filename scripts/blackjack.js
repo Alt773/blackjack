@@ -26,7 +26,7 @@ let newDeck = structuredClone(wholeDeck);
 let dealerCards = [];
 let playerCards = [];
 let handCount = 0;
-let playerMoney = 0;
+let playerMoney = 1000;
 let betAmount = 0;
 
 const playb = document.querySelectorAll(".playb");
@@ -124,6 +124,9 @@ function calculateScore(cards) {
     return total;
 }
 
+const scorekeeper = document.createElement("div");
+scorekeeper.classList.add("scorekeeper")
+
 function clearTable() {
       dealerCards = [];
       playerCards = [];
@@ -136,6 +139,8 @@ function clearTable() {
   }
 
 function deal() {
+    console.log("player's money: " + playerMoney)
+    insurance = 0;
     if (betAmount == 0) {
         alert("You have to bet in order to play!");
         return;
@@ -150,6 +155,7 @@ function deal() {
     dealerCards.push(randomCard("dhand"));
     dealerCards.push(randomCard("dhand"));
 
+
     document.querySelector(".pcard:nth-child(2)").style.visibility = "hidden"
 
     const dealBtn = document.getElementById("bdeal");
@@ -158,33 +164,129 @@ function deal() {
 
     playerCards.push(randomCard("phand"));
     playerCards.push(randomCard("phand"));
+    document.getElementById("phand").appendChild(scorekeeper)
+    scorekeeper.innerHTML = `${calculateScore(playerCards)}`
 
     console.log("Dealer cards:", dealerCards, "score:", calculateScore(dealerCards));
     console.log("Player hand:", playerCards, "score:", calculateScore(playerCards));
 
-    if (calculateScore(dealerCards) == 21) {
-        if (calculateScore(playerCards) == 21) {
-            playerMoney += betAmount
-            endReset()
-            
-            document.getElementById("end").innerHTML = "Push";  
-        }
-        else {
-            document.getElementById("end").innerHTML = "Dealer's Blackjack";
-            endReset()
-        }
-    } else {if (calculateScore(playerCards) == 21) {
+    
+    if (dealerCards[0].rank === "A") {
+        playb.forEach(el => el.style.visibility ="hidden");
+        endMsg.style.visibility = "visible";
+        endMsg.innerHTML = `Buy Insurance?<br>${Math.round(betAmount/2)} $`;
+        insButton.forEach(el => el.style.visibility ="visible");
+
+    }
+    
+    if (calculateScore(playerCards) == 21 && calculateScore(dealerCards) != 21) {
         document.getElementById("end").innerHTML = "You got Blackjack";
         playerMoney += Math.round(1.5*betAmount)
+
+        dealerScorekeeper()
+
         endReset()
-    }}
+    }
+    if (calculateScore(dealerCards) == 21 && calculateScore(playerCards) != 21 && dealerCards[0].rank !== "A") {
+        document.getElementById("end").innerHTML = "Dealer's Blackjack";
+
+        dealerScorekeeper()
+
+        endReset()
+    }
+}
+
+function dealerScorekeeper() {
+    const dScore = document.createElement("div")
+    dScore.classList.add("scorekeeper")
+    document.getElementById("dhand").appendChild(dScore)
+    dScore.innerHTML = `${calculateScore(dealerCards)}`
+}
+
+let insurance = 0;
+function insYes() {
+    insurance = 0;
+    insurance += Math.round(betAmount/2);
+    console.log(`Insurance: ${insurance}`);
+    insButton.forEach(el => el.style.visibility ="hidden");
+    endMsg.style.visibility = "hidden";
+    playb.forEach(el => el.style.visibility = "visible");
+    
+    if (calculateScore(dealerCards) == 21) {
+        if (calculateScore(playerCards) == 21) {
+            playerMoney -= insurance
+            playerMoney += 2*betAmount
+            
+            
+            document.getElementById("end").innerHTML = "Push";
+
+            dealerScorekeeper()
+
+            endReset()
+        }
+        else {
+            playerMoney -= insurance
+            playerMoney += 2*insurance
+
+            document.getElementById("end").innerHTML = "Dealer's Blackjack";
+
+            dealerScorekeeper()
+
+            endReset()
+        }
+    } else {playerMoney -= insurance}
+
+    
+    document.getElementById("bmoney").innerHTML = `${playerMoney} $`;
+    document.getElementById("bbet").innerHTML = `Bet: ${betAmount} $`;
+}
+
+const insButton = document.querySelectorAll(".insurance");
+function insNo() {
+    insurance = 0;
+    insButton.forEach(el => el.style.visibility ="hidden");
+    endMsg.style.visibility = "hidden";
+    playb.forEach(el => el.style.visibility = "visible")
+
+    if (calculateScore(dealerCards) == 21) {
+        if (calculateScore(playerCards) == 21) {
+            playerMoney -= insurance
+            playerMoney += 2*betAmount
+            
+            
+            document.getElementById("end").innerHTML = "Push";
+
+            dealerScorekeeper()
+
+            endReset()
+        }
+        else {
+            playerMoney -= insurance
+            playerMoney += 2*insurance
+
+            document.getElementById("end").innerHTML = "Dealer's Blackjack";
+
+            dealerScorekeeper()
+
+            endReset()
+        }
+    } else {playerMoney -= insurance}
+
+    
+    document.getElementById("bmoney").innerHTML = `${playerMoney} $`;
+    document.getElementById("bbet").innerHTML = `Bet: ${betAmount} $`;
+
 }
 
 function hit() {
     const newCard = randomCard("phand");
     playerCards.push(newCard);
+    scorekeeper.innerHTML = `${calculateScore(playerCards)}`
     if (calculateScore(playerCards) > 21) {
         endMsg.innerHTML = "Busted!";
+
+        dealerScorekeeper()
+
         endReset()
     }   else if (calculateScore(playerCards) == 21) {
         stand()
@@ -197,18 +299,30 @@ function stand() {
 
     while (calculateScore(dealerCards) < 17) {dealerCards.push(randomCard("dhand"));calculateScore(dealerCards)}
     console.log(`dealer's final score: ${calculateScore(dealerCards)}`);
+    console.log(`player's final score: ${calculateScore(playerCards)}`);
     
 
-    if ((calculateScore(dealerCards) < calculateScore(playerCards)) || (calculateScore(dealerCards) > 21) ) {
+    if ((calculateScore(dealerCards) < calculateScore(playerCards) && calculateScore(playerCards) <= 21) || (calculateScore(dealerCards) > 21 && calculateScore(playerCards) <= 21) ) {
         endMsg.innerHTML = "Won!";
+        playerMoney += insurance
         playerMoney += 2*betAmount
+
+        dealerScorekeeper()
+
         endReset()
     } else if (calculateScore(dealerCards) == calculateScore(playerCards)) {
             endMsg.innerHTML = "Pushed!";
+            playerMoney += insurance
             playerMoney += betAmount
+
+            dealerScorekeeper()
+
             endReset()
     } else if (calculateScore(dealerCards) > calculateScore(playerCards)) {
             endMsg.innerHTML = "Lost!";
+
+            dealerScorekeeper()
+
             endReset()
     }
            
@@ -226,13 +340,13 @@ function clearBet() {
 
 
 function bet(amount) {
+    tempWhileNoDatabase()
     document.getElementById("clearbet").style.visibility = "visible";
     betAmount += amount
-    console.log(betAmount)
-    console.log(playerMoney)
     document.getElementById("bmoney").innerHTML = `${playerMoney} $`
     document.getElementById("bbet").innerHTML = `Bet: ${betAmount} $`
-    if (betAmount > 0) {document.getElementById("bdeal").style.visibility = "visible"}  
+    if (betAmount > 0) {document.getElementById("bdeal").style.visibility = "visible"}
+    if (betAmount > playerMoney-betAmount) {betAmount = 0; alert("Nincs")}  
 }
 
 function endReset() {
@@ -256,3 +370,10 @@ function doubleDown() {
 
 }
 
+function tempWhileNoDatabase() {
+    if (playerMoney <= 0) {
+        alert("Még nincs pénz elmentve felhasználók között vagy bármi, szóval egyszerűen csak újratöltöm")
+        playerMoney = 1000;
+        document.getElementById("bmoney").innerHTML = `${playerMoney} $`;
+    } 
+}

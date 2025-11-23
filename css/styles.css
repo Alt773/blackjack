@@ -368,10 +368,12 @@ hr {
    GAME END POPUP
 --------------------------------------------------- */
 #enddiv {
-    align-items: center;
     bottom: 50vh;
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-areas: 
+        "message message"
+        "yes no";
+    grid-template-columns: 1fr 1fr;
     position: absolute;
     width: 100vw;
     z-index: 999;
@@ -381,10 +383,58 @@ hr {
     background-color: rgb(52,52,52);
     border: 3px solid goldenrod;
     border-radius: 20px;
+    grid-area: message;
+    max-width: 50vw;
     color: gold;
-    font-size:10vw;
+    font-size:5vw;
     padding: 15px;
     visibility: hidden;
+    text-align: center;
+    justify-self: center;
+}
+#ins-yes, #ins-no {
+    background-color: rgb(52,52,52);
+    border-radius: 50%;
+    align-self: center;
+    justify-self: center;
+    height: 13vw;
+    width: 13vw;
+    text-align: center;
+    visibility: hidden;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+#ins-yes {
+    grid-area: yes;
+    border: 3px solid rgb(145, 211, 127);
+    color: rgb(94, 141, 82);
+}
+#ins-yes:hover {
+    background-color: rgb(145, 211, 127);
+    color:rgb(35, 35, 35);
+    border-color: rgb(94, 141, 82);
+}
+
+#ins-no {
+    grid-area: no;
+    border: 3px solid rgb(147, 0, 0);
+    color: rgb(218, 3, 3)
+}
+#ins-no:hover {
+    background-color: rgb(218, 3, 3);
+    color: rgb(35, 35, 35);
+    border-color: rgb(147, 0, 0);
+}
+.scorekeeper {
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 2vh;
+    background-color: rgba(0,0,0, 0.5);
+    text-align: center;
+    order: 99;
+    align-self: center;
+    color:white;
+
 }
 
 @media (min-width: 600px) {
