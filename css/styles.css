@@ -1,0 +1,411 @@
+/* ---------------------------------------------------
+   GLOBAL
+--------------------------------------------------- */
+* {
+    box-sizing: border-box;
+    font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    margin: 0;
+}
+
+html {
+    background-color: rgb(35, 35, 35);
+}
+
+hr {
+    background-color: goldenrod;
+    color: goldenrod;
+    height: 3px;
+    left: 0;
+    position: absolute;
+    width: 100vw;
+}
+
+/* ---------------------------------------------------
+   BUTTONS / LINKS
+--------------------------------------------------- */
+#morebutton, #login, #goback {
+    background-color: goldenrod;
+    border: 0;
+    border-radius: 10px;
+    color: rgb(35, 35, 35);
+    font-size: 15px;
+    padding: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+#morebutton:hover, #login:hover, #goback:hover {
+    background-color: gold;
+}
+
+/* ---------------------------------------------------
+   HEADER (Main)
+--------------------------------------------------- */
+#header {
+    display: grid;
+    grid-template-areas:
+        "welcome welcome"
+        "money account";
+    grid-template-columns: 1fr 1fr;
+}
+
+#header, #blackjackheader {
+    background-color: rgb(35, 35, 35);
+    color: white;
+    font-size: 15px;
+    gap: 10px;
+    margin: 0;
+    padding: 5px;
+}
+
+#gold21 { color: goldenrod; }
+
+#header > div#welcome {
+    font-size: 20px;
+    font-weight: bold;
+    grid-area: welcome;
+    text-align: center;
+}
+
+#header > div#money { grid-area: money; }
+#header > div#account { grid-area: account; }
+
+#money, #account {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+#money { font-size: 20px; gap: 30px; }
+#account { gap: 10px; }
+
+#ppic { width: 60px; }
+#logindiv { padding: 5px; }
+
+/* ---------------------------------------------------
+   MAIN MENU
+--------------------------------------------------- */
+#main-main {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+#main-main img { 
+    width: 70vw; 
+    max-width: 400px;
+}
+
+#main-main a.main-options {
+    align-items: center;
+    background-color: rgb(52,52,52);
+    border: 3px solid goldenrod;
+    border-radius: 30px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    max-width: 80vw;
+    padding: 10px;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+#main-main a#main-options:hover {
+    background-color: goldenrod;
+    border-color: gold;
+    color: rgb(35, 35, 35);
+}
+
+/* ---------------------------------------------------
+   BLACKJACK HEADER
+--------------------------------------------------- */
+#blackjackheader {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+#bTitle { font-size: 20px; }
+#blogin { border-radius: 50%; }
+
+/* ---------------------------------------------------
+   BLACKJACK BOTTOM BETTING BAR
+--------------------------------------------------- */
+#bbottom {
+    align-items: center;
+    bottom: 0;
+    display: grid;
+    gap: 5px;
+    grid-template-areas:
+        "clear clear bet bet bet"
+        "one five tfive hundred fhundred"
+        "money money money money money";
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    height: var(--bottom-bar-height);
+    left: 5vw;
+    padding-bottom: 20px;
+    position: absolute;
+    bottom: 0;
+    width: 90vw;
+}
+
+
+
+#bmoney, #bbet {
+    align-self: center;
+    justify-self: center;
+    font-size: 2vh;
+    color: white;
+    font-weight: bold;
+}
+#bmoney { grid-area: money; }
+#bbet { grid-area: bet; justify-self: left;} 
+#clearbet {
+    background-color: rgb(52,52,52);
+    border-radius: 20px;
+    cursor: pointer;
+    width: 25vw;
+    font-size: 4vw;
+    font-weight: bold;
+    padding: 10px;
+    text-align: center;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    grid-area: clear;
+    color: rgb(210, 210, 210);
+    border: 3px solid white;
+    visibility: hidden;
+}
+#clearbet:hover {background-color: rgb(210, 210, 210); color: rgb(52,52,52); border-color: white;}
+
+#bbottom img { max-width: 15vw; }
+#bbottom button { cursor: pointer; }
+
+#b1, #b5, #b25, #b100, #b500 {
+    background: none;
+    border: none;
+}
+
+#b1 { grid-area: one; }
+#b5 { grid-area: five; }
+#b25 { grid-area: tfive; }
+#b100 { grid-area: hundred; }
+#b500 { grid-area: fhundred; }
+
+/* ---------------------------------------------------
+   BLACKJACK PLAYER OPTIONS
+--------------------------------------------------- */
+#boptions {
+    display: grid;
+    gap: 10px;
+    grid-template-areas:
+        "split deal hit"
+        "double deal stand";
+    grid-template-columns: 1fr 3fr 1fr;
+    padding: 10px;
+    position: absolute;
+    width: 100vw;
+}
+
+#boptions button {
+    background-color: rgb(52,52,52);
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 4vw;
+    font-weight: bold;
+    padding: 10px;
+    text-align: center;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    width: 20vw;
+}
+
+#bdeal {
+    align-self: center;
+    background-color: rgb(52,52,52);
+    border: 3px solid goldenrod;
+    border-radius: 20px;
+    color: gold;
+    font-size: 20px;
+    grid-area: deal;
+    justify-self: center;
+    padding: 5px 0;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    width: 20vw;
+    visibility: hidden;
+}
+
+#bdeal:hover {
+    background-color: gold;
+    border-color: goldenrod;
+    color: rgb(35, 35, 35);
+}
+
+/* Action Buttons */
+#hit, #stand, #double, #split {
+    border-width: 3px;
+    border-style: solid;
+    justify-self: center;
+}
+
+/* HIT */
+#hit {
+    border-color: rgb(145, 211, 127);
+    color: rgb(94, 141, 82);
+    grid-area: hit;
+    justify-self: right;
+}
+#hit:hover {
+    background-color: rgb(145, 211, 127);
+    border-color: rgb(94, 141, 82);
+    color: rgb(35, 35, 35);
+}
+
+/* STAND */
+#stand {
+    border-color: rgb(222, 153, 57);
+    color: rgb(171, 114, 35);
+    grid-area: stand;
+    justify-self: right;
+}
+#stand:hover {
+    background-color: rgb(222, 153, 57);
+    border-color: rgb(171, 114, 35);
+    color: rgb(35, 35, 35);
+}
+
+/* DOUBLE */
+#double {
+    border-color: rgb(130, 93, 242);
+    color: rgb(103, 67, 209);
+    grid-area: double;
+    justify-self: left;
+    visibility: hidden;
+}
+#double:hover {
+    background-color: rgb(130, 93, 242);
+    border-color: rgb(103, 67, 209);
+    color: rgb(35, 35, 35);
+}
+
+/* SPLIT */
+#split {
+    border-color: rgb(72, 125, 249);
+    color: rgb(43, 93, 211);
+    grid-area: split;
+    justify-self: left;
+    visibility: hidden;
+}
+#split:hover {
+    background-color: rgb(72, 125, 249);
+    border-color: rgb(43, 93, 211);
+    color: rgb(35, 35, 35);
+}
+
+/* ---------------------------------------------------
+   PLAY AREA / CARDS
+--------------------------------------------------- */
+#playarea {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    width: 100vw;
+}
+
+#dhand, #phand {
+    align-content: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: absolute;
+    width: 100vw;
+}
+#dhand {
+    top: 10px;
+}
+
+.pcard {
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    display: grid;
+    grid-template-areas:
+        "rank symbol"
+        "face face";
+    grid-template-rows: 1fr 4fr;
+    height: 21vw;
+    justify-content: center;
+    margin: 5px -10px 5px -10px;
+    width: 15vw;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+}
+
+.rank {
+    font-size: 3vw;
+    grid-area: rank;
+    justify-self: left;
+}
+
+.symbol {
+    grid-area: symbol;
+    height: 3vw;
+    justify-self: right;
+}
+
+.face {
+    grid-area: face;
+    width: 10vw;
+}
+
+/* ---------------------------------------------------
+   GAME END POPUP
+--------------------------------------------------- */
+#enddiv {
+    align-items: center;
+    bottom: 50vh;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    width: 100vw;
+    z-index: 999;
+}
+
+#end {
+    background-color: rgb(52,52,52);
+    border: 3px solid goldenrod;
+    border-radius: 20px;
+    color: gold;
+    font-size:10vw;
+    padding: 15px;
+    visibility: hidden;
+}
+
+@media (min-width: 600px) {
+    #header > div#welcome {font-size: 40px;}
+
+    #money, #username {font-size: 30px;}
+
+    #morebutton, #login, #goback {font-size: 25px;}
+
+    #main-main a.main-options {font-size: 30px;}
+}
+
+@media (orientation: landscape) {
+    #main-main {
+        flex-direction: row;
+        align-items: normal;
+        justify-content: space-evenly;
+        width: 100vw;
+    }
+    #main-main img {
+        width: 40vw
+    }
+
+}
