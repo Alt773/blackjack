@@ -7,13 +7,13 @@ for (let i = 0; i < 6; i++) {
                     wholeDeck.push({ suit: j, rank: "A", value: 1 });
                     break;
                 case 10:
-                    wholeDeck.push({ suit: j, rank: "J", value: 10 });
+                    wholeDeck.push({ suit: j, rank: "A", value: 10 });
                     break;
                 case 11:
-                    wholeDeck.push({ suit: j, rank: "Q", value: 10 });
+                    wholeDeck.push({ suit: j, rank: "A", value: 10 });
                     break;
                 case 12:
-                    wholeDeck.push({ suit: j, rank: "K", value: 10 });
+                    wholeDeck.push({ suit: j, rank: "A", value: 10 });
                     break;
                 default:
                     wholeDeck.push({ suit: j, rank: (k+1).toString(), value: k+1 });
@@ -138,19 +138,23 @@ function clearTable() {
       document.getElementById("end").style.visibility = "hidden";
   }
 
+const chipsContainer = document.getElementById("chips");
+const bbottomContainer = document.getElementById("bbottom");
+
 function deal() {
 
     tempWhileNoDatabase()
     console.log("player's money: " + playerMoney)
     insurance = 0;
     if (betAmount == 0) {
-        alert("You have to bet in order to play!");
+        document.getElementById("end").style.visibility = "visible"
+        document.getElementById("end").innerText = "You have to bet in order to play";
         return;
     }
     document.getElementById("clearbet").style.visibility = "hidden";
 
     playerMoney -= betAmount
-    document.getElementById("bmoney").innerHTML = `${playerMoney} $`
+    document.getElementById("bmoney").innerHTML = `Bank: ${playerMoney} $`
 
     clearTable();
 
@@ -172,7 +176,12 @@ function deal() {
     console.log("Dealer cards:", dealerCards, "score:", calculateScore(dealerCards));
     console.log("Player hand:", playerCards, "score:", calculateScore(playerCards));
 
-    
+    bbottomContainer.classList.remove("bbottom-expanding");
+    bbottomContainer.classList.add("bbottom-collapsing");
+
+    chipsContainer.classList.remove("chips-visible");
+    chipsContainer.classList.add("chips-hidden");
+
     if (dealerCards[0].rank === "A") {
         if (playerMoney - Math.round(betAmount/2) >= 0){
             playb.forEach(el => el.style.visibility ="hidden");
@@ -243,7 +252,7 @@ function insYes() {
     } else {playerMoney -= insurance}
 
     
-    document.getElementById("bmoney").innerHTML = `${playerMoney} $`;
+    document.getElementById("bmoney").innerHTML = `Bank: ${playerMoney} $`;
     document.getElementById("bbet").innerHTML = `Bet:<br>${betAmount} $`;
 }
 
@@ -279,7 +288,7 @@ function insNo() {
     } else {playerMoney -= insurance}
 
     
-    document.getElementById("bmoney").innerHTML = `${playerMoney} $`;
+    document.getElementById("bmoney").innerHTML = `Bank: ${playerMoney} $`;
     document.getElementById("bbet").innerHTML = `Bet:<br>${betAmount} $`;
 
 }
@@ -340,23 +349,28 @@ function stand() {
 
 function clearBet() {
     betAmount = 0;
-    document.getElementById("bmoney").innerHTML = `${playerMoney} $`
-    document.getElementById("bbet").innerHTML = `Bet:<br>${betAmount} $`
+    document.getElementById("bmoney").innerHTML = `Bank: ${playerMoney} $`
+    document.getElementById("bbet").style.visibility = "hidden"
     document.getElementById("bdeal").style.visibility ="hidden";
     document.getElementById("clearbet").style.visibility ="hidden";
 }
 
 
 function bet(amount) {
+    clearTable()
+    document.getElementById("end").style.visibility = "hidden"
     tempWhileNoDatabase()
     document.getElementById("clearbet").style.visibility = "visible";
     betAmount += amount
-    document.getElementById("bmoney").innerHTML = `${playerMoney} $`
+    document.getElementById("bmoney").innerHTML = `Bank: ${playerMoney} $`
+    document.getElementById("bbet").style.visibility = "visible"
     document.getElementById("bbet").innerHTML = `Bet:<br>${betAmount} $`
     if (betAmount > 0) {document.getElementById("bdeal").style.visibility = "visible"}
     if (betAmount > playerMoney) {
-        betAmount = playerMoney; alert("You can't bet more money than you have!"); 
-        document.getElementById("bmoney").innerHTML = `${playerMoney} $`;
+        betAmount = playerMoney;
+        document.getElementById("end").style.visibility = "visible";
+        document.getElementById("end").innerText = "You don't have that much money!"
+        document.getElementById("bmoney").innerHTML = `Bank: ${playerMoney} $`;
         document.getElementById("bbet").innerHTML = `Bet:<br>${betAmount} $`;
     }
 }
@@ -365,17 +379,22 @@ function endReset() {
     document.querySelector(".pcard:nth-child(2)").style.visibility = "visible";
     document.getElementById("end").style.visibility = "visible";
     betAmount = 0;
-    document.getElementById("bmoney").innerHTML = `${playerMoney} $`;
-    document.getElementById("bbet").innerHTML = `Bet:<br>${betAmount} $`;
+    document.getElementById("bmoney").innerHTML = `Bank: ${playerMoney} $`;
+    document.getElementById("bbet").style.visibility = "hidden"
     playb.forEach(el => el.style.visibility ="hidden");
     document.getElementById("bdeal").style.visibility ="hidden";
     document.getElementById("clearbet").style.visibility ="hidden";
+    document.getElementById("chips").style.visibility = "visible";
+    bbottomContainer.classList.remove("bbottom-collapsing");
+    bbottomContainer.classList.add("bbottom-expanding");
+    chipsContainer.classList.remove("chips-hidden");
+    chipsContainer.classList.add("chips-visible");
 }
 
 function doubleDown() {
     playerMoney -= betAmount
     betAmount *= 2
-    document.getElementById("bmoney").innerHTML = `${playerMoney} $`;
+    document.getElementById("bmoney").innerHTML = `Bank: ${playerMoney} $`;
     document.getElementById("bbet").innerHTML = `Bet:<br>${betAmount} $`;
     hit()
     stand()
@@ -383,9 +402,8 @@ function doubleDown() {
 
 function tempWhileNoDatabase() {
     if (playerMoney <= 0) {
-        alert("Let's just refill your money for now")
         playerMoney = 1000;
-        document.getElementById("bmoney").innerHTML = `${playerMoney} $`;
+        document.getElementById("bmoney").innerHTML = `Bank: ${playerMoney} $`;
     } 
 
 }

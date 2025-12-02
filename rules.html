@@ -5,12 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lucky 13</title>
     <link rel="icon" type="image/x-icon" href="images/number-21-gold-luxury-free-png.webp">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
-    <header id = "header">
-        <div id = "welcome">Rules</div>
+<body id = "rules">
+    <header id = "blackjack-header">
+        <a href="index.html" id = "go-back">Go Back</a>
+        <div id = "blackjack-title">Rules</div>
     </header>
-    <hr>
+    <nav id = "rules-nav">
+        <a href="#basics">The Basics</a>
+        <a href="#decisions">Player decisions</a>
+        <a href="#insurance">Insurance</a>
+        <a href="#bets">Bets and Returns</a>
+    </nav>
+
+    <section id = "basics">
+        <h2>The Basics</h2>
+        <p>The goal is to have a hand total closer to 21 than the dealer's hand, without going over 21 (busting).</p>
+        <ul>
+            <li>**Card Values:** Number cards (2-10) are worth their face value. Face cards (Jack, Queen, King) are worth 10 points. Aces are worth 1 or 11 points, whichever is better for the hand.</li>
+            <li>**Blackjack:** A hand totaling exactly 21 with the first two cards (an Ace and any 10-point card) is a natural Blackjack.</li>
+            <li>**Dealer's Turn:** The dealer must hit on all hands totaling 16 or less and must stand on all hands totaling 17 or more.</li>
+        </ul>
+    </section>
+    <section id = "decisions">
+        <h2>Player decisions</h2>
+        <p>After receiving your initial two cards, you have the following options:</p>
+        <ul>
+            <li>**Hit:** Take an additional card to increase your hand total.</li>
+            <li>**Stand:** Keep your current hand and end your turn.</li>
+            <li>**Double Down:** Double your initial bet and receive exactly one more card, then your turn ends. This is usually permitted only on the first two cards.</li>
+        </ul>
+    </section>
+    <section id = "insurance">
+        <h2>Insurance</h2>
+        <p>If the dealer's up-card is an Ace, you may place an Insurance bet, which is half your original bet.</p>
+        <ul>
+            <li>This is a bet that the dealer has a Blackjack (a 10-point card as their down-card).</li>
+            <li>If the dealer has Blackjack, the Insurance bet pays 2:1. If they do not, you lose the Insurance bet.</li>
+        </ul>
+    </section>
+    <section id = "bets">
+        <h2>Bets and Returns</h2>
+        <p>Winnings are paid based on the outcome of the hand:</p>
+        <ul>
+            <li>**Win (Standard):** If your hand is higher than the dealer's without busting, you are paid 1:1 (even money).</li>
+            <li>**Blackjack:** A natural Blackjack pays 3:2 (you win $3 for every $2 bet).</li>
+            <li>**Push (Tie):** If your hand total equals the dealer's total, it is a push, and your bet is returned.</li>
+            <li>**Loss:** If your hand is lower than the dealer's or you bust, you lose your bet.</li>
+        </ul>
+    </section>
 </body>
 </html>

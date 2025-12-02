@@ -1,461 +1,675 @@
-/* ---------------------------------------------------
-   GLOBAL
---------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
 * {
     box-sizing: border-box;
-    font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: Roboto;
     margin: 0;
+    padding: 0;
+    user-select: none;
 }
 
-html {
+/*---------- BLACKJACK ----------*/
+
+body#blackjack {
+    background: radial-gradient(circle at 50% 50%, #2b423c 0%, #121212 100%);
+    color: #f0f0f0;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+/*---------- Header ----------*/
+
+#blackjack-header {
     background-color: rgb(35, 35, 35);
-}
-
-hr {
-    background-color: goldenrod;
-    color: goldenrod;
-    height: 3px;
-    left: 0;
-    position: absolute;
-    width: 100vw;
-}
-
-/* ---------------------------------------------------
-   BUTTONS / LINKS
---------------------------------------------------- */
-#morebutton, #login, #goback {
-    background-color: goldenrod;
-    border: 0;
-    border-radius: 10px;
-    color: rgb(35, 35, 35);
-    font-size: 15px;
-    padding: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s;
-}
-
-#morebutton:hover, #login:hover, #goback:hover {
-    background-color: gold;
-}
-
-/* ---------------------------------------------------
-   HEADER (Main)
---------------------------------------------------- */
-#header {
     display: grid;
-    grid-template-areas:
-        "welcome welcome"
-        "money account";
-    grid-template-columns: 1fr 1fr;
-}
-
-#header, #blackjackheader {
-    background-color: rgb(35, 35, 35);
-    color: white;
-    font-size: 15px;
-    gap: 10px;
-    margin: 0;
-    padding: 5px;
-}
-
-#gold21 { color: goldenrod; }
-
-#header > div#welcome {
-    font-size: 20px;
-    font-weight: bold;
-    grid-area: welcome;
-    text-align: center;
-}
-
-#header > div#money { grid-area: money; }
-#header > div#account { grid-area: account; }
-
-#money, #account {
+    grid-template-areas: "go-back title ppic";
+    grid-template-columns: 1fr 2fr 1fr;
     align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
-}
-
-#money { font-size: 20px; gap: 30px; }
-#account { gap: 10px; }
-
-#ppic { width: 60px; }
-#logindiv { padding: 5px; }
-
-/* ---------------------------------------------------
-   MAIN MENU
---------------------------------------------------- */
-#main-main {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    justify-content: space-around;
-    padding: 20px;
-}
-
-#main-main img { 
-    width: 70vw; 
-    max-width: 400px;
-}
-
-#main-main a.main-options {
-    align-items: center;
-    background-color: rgb(52,52,52);
-    border: 3px solid goldenrod;
-    border-radius: 30px;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
-    max-width: 80vw;
-    padding: 10px;
-    text-decoration: none;
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-}
-
-#main-main a#main-options:hover {
-    background-color: goldenrod;
-    border-color: gold;
-    color: rgb(35, 35, 35);
-}
-
-/* ---------------------------------------------------
-   BLACKJACK HEADER
---------------------------------------------------- */
-#blackjackheader {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-}
-
-#bTitle { font-size: 20px; }
-#blogin { border-radius: 50%; }
-
-/* ---------------------------------------------------
-   BLACKJACK BOTTOM BETTING BAR
---------------------------------------------------- */
-#bbottom {
-    align-items: center;
-    bottom: 0;
-    display: grid;
-    gap: 5px;
-    grid-template-areas:
-        "clear clear bet none none"
-        "one five tfive hundred fhundred"
-        "money money money money money";
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    height: var(--bottom-bar-height);
-    padding-bottom: 20px;
-    position: absolute;
-    bottom: 0;
-    width: 100vw;
-}
-
-
-
-#bmoney, #bbet {
-    align-self: center;
-    justify-self: center;
-    font-size: 2vh;
-    color: white;
-    font-weight: bold;
-    text-align: center;
-}
-#bmoney { grid-area: money; }
-#bbet { grid-area: bet; justify-self: center;} 
-#clearbet {
-    background-color: rgb(52,52,52);
-    border-radius: 20px;
-    cursor: pointer;
-    width: 25vw;
-    font-size: 4vw;
-    font-weight: bold;
-    padding: 10px;
-    text-align: center;
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-    grid-area: clear;
-    color: rgb(210, 210, 210);
-    border: 3px solid white;
-    visibility: hidden;
-}
-#clearbet:hover {background-color: rgb(210, 210, 210); color: rgb(52,52,52); border-color: white;}
-
-#bbottom img { max-width: 15vw; }
-#bbottom button { cursor: pointer; }
-
-#b1, #b5, #b25, #b100, #b500 {
-    background: none;
-    border: none;
-}
-
-#b1 { grid-area: one; }
-#b5 { grid-area: five; }
-#b25 { grid-area: tfive; }
-#b100 { grid-area: hundred; }
-#b500 { grid-area: fhundred; }
-
-/* ---------------------------------------------------
-   BLACKJACK PLAYER OPTIONS
---------------------------------------------------- */
-#boptions {
-    display: grid;
-    gap: 10px;
-    grid-template-areas:
-        "split deal hit"
-        "double deal stand";
-    grid-template-columns: 1fr 3fr 1fr;
-    padding: 10px;
-    position: absolute;
-    width: 100vw;
-}
-
-#boptions button {
-    background-color: rgb(52,52,52);
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 4vw;
-    font-weight: bold;
-    padding: 10px;
-    text-align: center;
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-    width: 20vw;
-}
-
-#bdeal {
-    align-self: center;
-    background-color: rgb(52,52,52);
-    border: 3px solid goldenrod;
-    border-radius: 20px;
-    color: gold;
-    font-size: 20px;
-    grid-area: deal;
-    justify-self: center;
-    padding: 5px 0;
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-    width: 20vw;
-    visibility: hidden;
-}
-
-#bdeal:hover {
-    background-color: gold;
-    border-color: goldenrod;
-    color: rgb(35, 35, 35);
-}
-
-/* Action Buttons */
-#hit, #stand, #double, #split {
-    border-width: 3px;
-    border-style: solid;
-    justify-self: center;
-}
-
-/* HIT */
-#hit {
-    border-color: rgb(145, 211, 127);
-    color: rgb(94, 141, 82);
-    grid-area: hit;
-    justify-self: right;
-}
-#hit:hover {
-    background-color: rgb(145, 211, 127);
-    border-color: rgb(94, 141, 82);
-    color: rgb(35, 35, 35);
-}
-
-/* STAND */
-#stand {
-    border-color: rgb(222, 153, 57);
-    color: rgb(171, 114, 35);
-    grid-area: stand;
-    justify-self: right;
-}
-#stand:hover {
-    background-color: rgb(222, 153, 57);
-    border-color: rgb(171, 114, 35);
-    color: rgb(35, 35, 35);
-}
-
-/* DOUBLE */
-#double {
-    border-color: rgb(130, 93, 242);
-    color: rgb(103, 67, 209);
-    grid-area: double;
-    justify-self: left;
-    visibility: hidden;
-}
-#double:hover {
-    background-color: rgb(130, 93, 242);
-    border-color: rgb(103, 67, 209);
-    color: rgb(35, 35, 35);
-}
-
-/* SPLIT */
-#split {
-    border-color: rgb(72, 125, 249);
-    color: rgb(43, 93, 211);
-    grid-area: split;
-    justify-self: left;
-    visibility: hidden;
-}
-#split:hover {
-    background-color: rgb(72, 125, 249);
-    border-color: rgb(43, 93, 211);
-    color: rgb(35, 35, 35);
-}
-
-/* ---------------------------------------------------
-   PLAY AREA / CARDS
---------------------------------------------------- */
-#playarea {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    padding: 15px 20px;
+    height: 80px;
     position: relative;
-    width: 100vw;
+    z-index: 100;
+    border-bottom: 2px solid goldenrod;
+}
+
+#go-back {
+    text-decoration: none;
+    font-size: 4vw;
+    color: rgb(52, 52, 52);
+    border-radius: 20px;
+    background-color: goldenrod;
+    padding: 10px;
+    grid-area: go-back;
+    justify-self: left;
+    border: 3px solid rgb(52, 52, 52);
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s, transform 0.3s;
+}
+
+#go-back:hover {
+    background-color: rgb(52, 52, 52);
+    color:goldenrod;
+    border-color: goldenrod;
+    transform: scale(1.1);
+}
+
+#blackjack-title {
+    font-size: 6vw;
+    font-weight: bolder;
+    grid-area: title;
+    text-align: center;
+}
+
+/*---------- playarea ----------*/
+
+#playarea {
+    position: relative;
+    top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 2vh;
+    height: 50vh;
+}
+
+#player {
+    display: grid;
+    gap: 3vh
 }
 
 #dhand, #phand {
-    align-content: center;
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
     justify-content: center;
-    position: absolute;
-    width: 100vw;
-}
-#dhand {
-    top: 10px;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    
 }
 
 .pcard {
-    align-items: center;
-    background-color: white;
-    border-radius: 10px;
+    width: 21vw;
+    height: 28vw;
     display: grid;
-    grid-template-areas:
+    grid-template-areas: 
         "rank symbol"
         "face face";
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 4fr;
-    height: 21vw;
-    justify-content: center;
-    margin: 5px -10px 5px -10px;
-    width: 15vw;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+    border-radius: 10%;
+    margin: -10px;
+    background-color: #f0f0f0;
+    animation: slideIn 0.4s ease-out;
+    box-shadow: -2px 2px 5px rgba(0,0,0,0.4);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.pcard:hover {
+    transform: translateY(-10px) scale(1.05);
+    z-index: 10;
+}
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(-50px) rotate(5deg); }
+    to { opacity: 1; transform: translateY(0) rotate(0); }
 }
 
 .rank {
-    font-size: 3vw;
+    font-size: 5vw;
     grid-area: rank;
-    justify-self: left;
+    color: rgb(35, 35, 35);
+    text-align: center;
 }
-
 .symbol {
     grid-area: symbol;
-    height: 3vw;
-    justify-self: right;
-}
-
-.face {
-    grid-area: face;
-    width: 10vw;
-}
-
-/* ---------------------------------------------------
-   GAME END POPUP
---------------------------------------------------- */
-#enddiv {
-    bottom: 50vh;
-    display: grid;
-    grid-template-areas: 
-        "message message"
-        "yes no";
-    grid-template-columns: 1fr 1fr;
-    position: absolute;
-    width: 100vw;
-    z-index: 999;
-}
-
-#end {
-    background-color: rgb(52,52,52);
-    border: 3px solid goldenrod;
-    border-radius: 20px;
-    grid-area: message;
-    max-width: 50vw;
-    color: gold;
-    font-size:5vw;
-    padding: 15px;
-    visibility: hidden;
-    text-align: center;
-    justify-self: center;
-}
-#ins-yes, #ins-no {
-    background-color: rgb(52,52,52);
-    border-radius: 50%;
+    width: 5vw;
     align-self: center;
     justify-self: center;
-    height: 13vw;
-    width: 13vw;
+}
+.face {
+    grid-area: face;
+    width: 18vw;
+    align-self: center;
+    justify-self: center;
+}
+
+.scorekeeper {
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid var(--gold-text);
+    color: var(--gold-text);
+    width: 10vw;
+    height: 10vw;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 5vw;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    animation: popIn 0.3s;
+    order: 10;
+    z-index: 10;
+}
+@keyframes popIn {
+    from { transform: scale(0); }
+    to { transform: scale(1); }
+}
+
+#enddiv {
+    align-self: center;
+    display: grid;
+    grid-template-areas: 
+        "end end"
+        "yes no"
+        ;
+}
+#end {
+    font-size: 6vw;
     text-align: center;
-    visibility: hidden;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    grid-area: end;
 }
 #ins-yes {
     grid-area: yes;
-    border: 3px solid rgb(145, 211, 127);
-    color: rgb(94, 141, 82);
+    color: rgb(54, 177, 23);
+    border: 2px solid rgb(62, 214, 24);
 }
-#ins-yes:hover {
-    background-color: rgb(145, 211, 127);
-    color:rgb(35, 35, 35);
-    border-color: rgb(94, 141, 82);
-}
-
 #ins-no {
     grid-area: no;
-    border: 3px solid rgb(147, 0, 0);
-    color: rgb(218, 3, 3)
+    color: rgb(197, 30, 30);
+    border: 2px solid rgb(233, 36, 36);
+}
+#ins-yes:hover {
+    color: rgb(52, 52, 52);
+    background-color: rgb(62, 214, 24);
+    border-color: rgb(54, 177, 23);
+    transform: scale(1.1);
 }
 #ins-no:hover {
-    background-color: rgb(218, 3, 3);
-    color: rgb(35, 35, 35);
-    border-color: rgb(147, 0, 0);
+    color: rgb(52, 52, 52);
+    background-color: rgb(233, 36, 36);
+    border-color: rgb(197, 30, 30);
+    transform: scale(1.1);
 }
-.scorekeeper {
-    border-radius: 10px;
-    padding: 10px;
-    font-size: 2vh;
-    background-color: rgba(0,0,0, 0.5);
+
+.insurance {
+    visibility: hidden;
+    width: 10vw;
+    height: 10vw;
+    font-size: 5vw;
+    border-radius: 50%;
+    background-color: rgb(52, 52, 52);
+    justify-self: center;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s, transform 0.3s;
+}
+
+#bbet {
     text-align: center;
-    order: 99;
-    align-self: center;
-    color:white;
-
+    visibility: hidden;
+    font-size: 6vw;
 }
 
-@media (min-width: 600px) {
-    #header > div#welcome {font-size: 40px;}
+/*---------- bottom ---------- */
 
-    #money, #username {font-size: 30px;}
+#bottom-bar {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    bottom: 0;
+    align-items: center;
+    width: 100%;
+    z-index: 11;
+}
 
-    #morebutton, #login, #goback {font-size: 25px;}
+#boptions {
+    display: grid;
+    grid-template-areas: 
+        "double deal hit"
+        "double deal stand";
+    align-items: center;
+    grid-template-columns: 2fr 3fr 2fr;
+    width: 100vw;
+    gap: 3px
+}
 
-    #main-main a.main-options {font-size: 30px;}
+#double, #bdeal, #hit, #stand {
+    border-radius: 15px;
+    background-color: rgb(52, 52, 52);
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s, transform 0.3s;
+    width: 20vw;
+    justify-self: center;
+    padding: 5px;
+    font-size: 5vw;
+    font-weight: bold;
+}
+
+#double {
+    grid-area: double;
+    color: rgb(38, 120, 215);
+    border: 2px solid rgb(42, 142, 255);
+}
+#double:hover {
+    color: rgb(52, 52, 52);
+    border-color: rgb(38, 120, 215);
+    background-color: rgb(42, 142, 255);
+    transform: scale(1.1);
+}
+
+#bdeal {
+    grid-area: deal;
+    visibility: hidden;
+    color: goldenrod;
+    border: 2px solid rgb(255, 194, 39);
+}
+#bdeal:hover {
+    color: rgb(52, 52, 52);
+    border-color: goldenrod;
+    background-color: rgb(255, 194, 39);
+    transform: scale(1.1);
+}
+#hit{
+    grid-area: hit;
+    color:rgb(71, 155, 79);
+    border: 2px solid rgb(94, 195, 104);
+}
+#hit:hover {
+    color: rgb(52, 52, 52);
+    border-color: rgb(71, 155, 79);
+    background-color: rgb(94, 195, 104);
+    transform: scale(1.1);
+}
+#stand {
+    grid-area: stand;
+    color: rgb(197, 114, 31);
+    border: 2px solid rgb(235, 139, 43);
+}
+#stand:hover {
+    color: rgb(52, 52, 52);
+    border-color: rgb(197, 114, 31);
+    background-color: rgb(235, 139, 43);
+    transform: scale(1.1);
+}
+
+#bbottom {
+    display: grid;
+    grid-template-areas: 
+        "clear"
+        "chips"
+        "money";
+    grid-template-rows: 1fr 2fr 1fr;
+    align-items: center;
+    width: 100vw;
+    background-color: rgba(35,35,35,0.7);
+    transition: grid-template-rows 0.5s ease-in-out;
+    border-top: 2px solid goldenrod;
+    padding: 5px 0 5px 0;
+}
+@keyframes bbottom-collapse {
+    0% {
+        grid-template-rows: auto 20vw auto; /* 2fr is the chips row */
+    }
+    100% {
+        grid-template-rows: auto 0px auto /* Shrink chips row to 0fr */
+    }
+}
+@keyframes bbottom-expand {
+    0% {
+        grid-template-rows: auto 0px auto;
+    }
+    100% {
+        grid-template-rows: auto 20vw auto;
+    }
+}
+.bbottom-collapsing {
+    animation: bbottom-collapse 0.5s ease-in forwards;
+}
+.bbottom-expanding {
+    animation: bbottom-expand 0.5s ease-out forwards;
+}
+
+#clearbet {
+    grid-area: clear;
+    width: 30vw;
+    justify-self: center;
+    color: #d5d5d5;
+    border: 2px solid #e8e8e8;
+    background-color: rgb(52, 52, 52);
+    border-radius: 15px;
+    padding: 4px;
+    font-size: 5vw;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s, transform 0.3s;
+    visibility: hidden;
+}
+#clearbet:hover {
+    color: rgb(52, 52, 52);
+    border-color: #d5d5d5;
+    background-color: #e8e8e8;
+    transform: scale(1.1);
+}
+
+#chips {
+    grid-area: chips;
+    display: flex;
+    justify-content: space-evenly;
+    position: relative;
+    transition: opacity 0.5s ease-in-out;
+}
+#chips button {
+    background: none;
+    border: none;
+    width: 15vw
+}
+.chips-hidden {
+    opacity: 0;
+    pointer-events: none; 
+}
+.chips-visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#bmoney {
+    grid-area: money;
+    text-align: center;
+    font-size: 5vw;
+    padding-bottom: 5px;
+}
+
+#chips img {
+    width: 100%;
+}
+
+/*---------- INDEX -----------*/
+
+
+#main {
+    background-color: rgb(52, 52, 52);
+    color: #f0f0f0;
+}
+
+#header {
+    display: grid;
+    grid-template-areas: "null title review";
+    grid-template-columns: 1fr 3fr 1fr;
+    background-color: rgb(35, 35, 35);
+    border-bottom: 3px solid goldenrod;
+    padding: 30px 10px 20px 10px;
+    width: 100vw;
+}
+#welcome {
+    grid-area: title;
+    justify-self: center;
+    font-size: 6vw;
+    font-weight: bolder;
+    text-align: center;
+}
+#gold21 {color: gold}
+#review {
+    grid-area: review;
+    text-align: center;
+    text-decoration: none;
+    border: 2px solid rgb(52, 52, 52);
+    background-color: goldenrod;
+    color: rgb(52, 52, 52);
+    border-radius: 15px;
+    padding: 5px;
+    justify-self: center;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s, transform 0.3s;
+    font-size: 5vw;
+    align-self: center;
+}
+#review:hover {
+    color: goldenrod;
+    border-color: goldenrod;
+    background-color: rgb(52, 52, 52);
+    transform: scale(1.1);
+}
+
+#main-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 20px;
+    padding-top: 30px;
+    height: 80vh
+}
+
+.main-options {
+    background-color: rgb(35, 35, 35);
+    border-radius: 15px;
+    border: 2px solid goldenrod;
+    display: flex;
+    flex-direction: column;
+    width: 60vw;
+    height: 60vw;
+    align-items: center;
+    padding: 10px;
+    justify-content: space-between;
+    text-decoration: none;
+    color: #f0f0f0;
+    font-size: 5vw;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s, transform 0.3s;
+}
+.main-options:hover {
+    color: rgb(35, 35, 35);
+    background-color: goldenrod;
+    border-color: rgb(35, 35, 35);
+    transform: scale(1.1);
+}
+
+#main-main img {
+    width: 50vw;
+}
+
+/*----------- RULES -----------*/
+
+body#rules {
+    background-color: rgb(52, 52, 52);
+    color: #f0f0f0;
+}
+
+#rules-nav {
+    padding: 1vh 0 0.5vh 0;
+    text-align: center;
+    display: flex;
+    gap: 5vw;
+    justify-content: space-around;
+    background-color: rgb(35, 35, 35);
+    border-bottom: 2px solid goldenrod;
+}
+#rules-nav a {
+    text-decoration: none;
+    color: #f0f0f0;
+    font-size: 15px;
+}
+#rules section {
+    text-align: center;
+    margin: 20px 5px 20px 5px;
+    line-height: 1.2;
+}
+p,li {
+    font-size: 20px;
+    padding: 5px;
+}
+
+/*----------- MEDIA QUERIES -----------*/
+
+@media (max-width: 700px) and (orientation: landscape) {
+    #chips button {width: 13vh;}
+
+    #clearbet {
+        font-size: 3vh;
+        width: 15vh;
+    }
+    #bmoney {font-size: 4vh}
+
+    #boptions button {
+        font-size: 3vh;
+        width: 15vh;
+    }
+
+    .pcard {
+        width: 15vh;
+        height: 20vh;
+    }
+    .rank {font-size: 3vh;}
+    .symbol {width: 3vh;}
+    .face {width: 12.85vh}
+
+    #bbet, #end {font-size: 4vh;}
+
+    .scorekeeper, .insurance {
+        font-size: 4vh;
+        width: 10vh;
+        height: 10vh;
+    }
+
+    @keyframes bbottom-collapse {
+    0% {
+        grid-template-rows: auto 20vh auto; /* 2fr is the chips row */
+    }
+    100% {
+        grid-template-rows: auto 0px auto /* Shrink chips row to 0fr */
+    }
+    }
+    @keyframes bbottom-expand {
+    0% {
+        grid-template-rows: auto 0px auto;
+    }
+    100% {
+        grid-template-rows: auto 20vh auto;
+    }
+    }
+}
+
+
+@media (min-width: 700px) {
+    #blackjack-header {height: 100px;}
+
+    #chips button {width: 13vh;}
+
+    #clearbet {
+        font-size: 3vh;
+        width: 15vh;
+    }
+    #bmoney {font-size: 4vh}
+
+    #boptions button {
+        font-size: 3vh;
+        width: 15vh;
+    }
+
+    .pcard {
+        width: 15vh;
+        height: 20vh;
+    }
+    .rank {font-size: 3vh;}
+    .symbol {width: 3vh;}
+    .face {width: 12.85vh}
+
+    #bbet, #end {font-size: 4vh;}
+
+    .scorekeeper, .insurance {
+        font-size: 4vh;
+        width: 10vh;
+        height: 10vh;
+    }
+
+    @keyframes bbottom-collapse {
+    0% {
+        grid-template-rows: auto 20vh auto; /* 2fr is the chips row */
+    }
+    100% {
+        grid-template-rows: auto 0px auto /* Shrink chips row to 0fr */
+    }
+    }
+    @keyframes bbottom-expand {
+    0% {
+        grid-template-rows: auto 0px auto;
+    }
+    100% {
+        grid-template-rows: auto 20vh auto;
+    }
+    }
+
+    #rules-nav a {
+    font-size: 30px;
+}
+}   
+
+@media (min-width: 1000px) and (min-height: 800px) {
+    
+    #go-back {
+        max-height: 80px;
+        font-size: 40px;
+    }
+    #blackjack-title {font-size: 60px}
+
+    .pcard {
+        width: 150px;
+        height: 200px;
+    }
+
+    #playarea {height: auto;}
+    .rank {font-size: 20px;}
+    .symbol {width: 30px;}
+    .face {width: 120px;}
+
+    #chips button {width: 100px}
+
+    #boptions button, #clearbet {
+        font-size: 30px;
+    }
+
+    .scorekeeper, .insurance {
+        font-size: 40px;
+        max-width: 80px;
+        max-height: 80px;
+    }
+
+    #bbet {font-size: 40px;}
+
+    #bmoney {font-size: 40px;}
+
+    #end {font-size: 40px;}
+
+
+    
+    @keyframes bbottom-collapse {
+        0% {
+            grid-template-rows: auto 204px auto; /* 2fr is the chips row */
+        }
+        100% {
+            grid-template-rows: auto 0px auto /* Shrink chips row to 0fr */
+        }
+    }
+    @keyframes bbottom-expand {
+        0% {
+            grid-template-rows: auto 0px auto;
+        }
+        100% {
+            grid-template-rows: auto 204px auto;
+        }
+    }
 }
 
 @media (orientation: landscape) {
+    
     #main-main {
         flex-direction: row;
-        align-items: normal;
-        justify-content: space-evenly;
-        width: 100vw;
+        justify-content: center;
+        gap: 10vw;
+        padding-top: 10vh
     }
     #main-main img {
-        width: 40vw
+        width: 80%
     }
 
+    .main-options {
+        width: 50vh;
+        height: 50vh;
+        font-size: 5vh;
+    }
+    
+    #review {font-size: 4vh;}
+
+    #welcome{font-size: 6vh}
 }
+
