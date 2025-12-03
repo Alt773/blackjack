@@ -7,13 +7,13 @@ for (let i = 0; i < 6; i++) {
                     wholeDeck.push({ suit: j, rank: "A", value: 1 });
                     break;
                 case 10:
-                    wholeDeck.push({ suit: j, rank: "A", value: 10 });
+                    wholeDeck.push({ suit: j, rank: "J", value: 10 });
                     break;
                 case 11:
-                    wholeDeck.push({ suit: j, rank: "A", value: 10 });
+                    wholeDeck.push({ suit: j, rank: "Q", value: 10 });
                     break;
                 case 12:
-                    wholeDeck.push({ suit: j, rank: "A", value: 10 });
+                    wholeDeck.push({ suit: j, rank: "K", value: 10 });
                     break;
                 default:
                     wholeDeck.push({ suit: j, rank: (k+1).toString(), value: k+1 });
@@ -407,5 +407,6 @@ function tempWhileNoDatabase() {
     } 
 
 }
+
 
 
