@@ -305,12 +305,12 @@ body#blackjack {
         grid-template-rows: auto 20vw auto; /* 2fr is the chips row */
     }
     100% {
-        grid-template-rows: auto 0px auto /* Shrink chips row to 0fr */
+        grid-template-rows: 0px 0px auto /* Shrink chips row to 0fr */
     }
 }
 @keyframes bbottom-expand {
     0% {
-        grid-template-rows: auto 0px auto;
+        grid-template-rows: 0px 0px auto;
     }
     100% {
         grid-template-rows: auto 20vw auto;
@@ -682,4 +682,5 @@ p,li {
     #blackjack-title {font-size: 4vh};
     #go-back {font-size: 3vh;}
 }
+
 
