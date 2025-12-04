@@ -196,14 +196,11 @@ function deal() {
         document.getElementById("end").innerHTML = "You got Blackjack";
         playerMoney += Math.round(1.5*betAmount)
 
-        dealerScorekeeper()
 
         endReset()
     }
     if (calculateScore(dealerCards) == 21 && calculateScore(playerCards) != 21 && dealerCards[0].rank !== "A") {
         document.getElementById("end").innerHTML = "Dealer's Blackjack";
-
-        dealerScorekeeper()
 
         endReset()
     }
@@ -230,22 +227,20 @@ function insYes() {
     if (calculateScore(dealerCards) == 21) {
         if (calculateScore(playerCards) == 21) {
             playerMoney -= insurance
-            playerMoney += 2*betAmount
+            playerMoney += 3*insurance + betAmount
             
             
             document.getElementById("end").innerHTML = "Push";
 
-            dealerScorekeeper()
 
             endReset()
         }
         else {
             playerMoney -= insurance
-            playerMoney += 2*insurance
+            playerMoney += 3*insurance
 
             document.getElementById("end").innerHTML = "Dealer's Blackjack";
 
-            dealerScorekeeper()
 
             endReset()
         }
@@ -271,8 +266,6 @@ function insNo() {
             
             document.getElementById("end").innerHTML = "Push";
 
-            dealerScorekeeper()
-
             endReset()
         }
         else {
@@ -280,8 +273,6 @@ function insNo() {
             playerMoney += 2*insurance
 
             document.getElementById("end").innerHTML = "Dealer's Blackjack";
-
-            dealerScorekeeper()
 
             endReset()
         }
@@ -300,9 +291,6 @@ function hit() {
     if (calculateScore(playerCards) > 21) {
         endMsg.innerHTML = "Busted!";
 
-
-
-        dealerScorekeeper()
 
         endReset()
     }   else if (calculateScore(playerCards) == 21) {
@@ -324,7 +312,6 @@ function stand() {
         playerMoney += insurance
         playerMoney += 2*betAmount
 
-        dealerScorekeeper()
 
         endReset()
     } else if (calculateScore(dealerCards) == calculateScore(playerCards)) {
@@ -332,13 +319,11 @@ function stand() {
             playerMoney += insurance
             playerMoney += betAmount
 
-            dealerScorekeeper()
 
             endReset()
     } else if (calculateScore(dealerCards) > calculateScore(playerCards)) {
             endMsg.innerHTML = "Lost!";
 
-            dealerScorekeeper()
 
             endReset()
     }
@@ -389,6 +374,7 @@ function endReset() {
     bbottomContainer.classList.add("bbottom-expanding");
     chipsContainer.classList.remove("chips-hidden");
     chipsContainer.classList.add("chips-visible");
+    dealerScorekeeper();
 }
 
 function doubleDown() {
@@ -397,7 +383,7 @@ function doubleDown() {
     document.getElementById("bmoney").innerHTML = `Bank: ${playerMoney} $`;
     document.getElementById("bbet").innerHTML = `Bet:<br>${betAmount} $`;
     hit()
-    stand()
+    if(calculateScore(playerCards) < 21) {stand()};
 }
 
 function tempWhileNoDatabase() {

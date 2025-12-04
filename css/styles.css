@@ -492,6 +492,8 @@ p,li {
 /*----------- MEDIA QUERIES -----------*/
 
 @media (max-width: 700px) and (orientation: landscape) {
+    #blackjack-title, #go-back {font-size: 4vh}
+    
     #chips button {width: 13vh;}
 
     #clearbet {
@@ -516,9 +518,9 @@ p,li {
     #bbet, #end {font-size: 4vh;}
 
     .scorekeeper, .insurance {
-        font-size: 4vh;
-        width: 10vh;
-        height: 10vh;
+        font-size: 2vh;
+        width: 7vh;
+        height: 7vh;
     }
 
     @keyframes bbottom-collapse {
@@ -547,7 +549,7 @@ p,li {
 
     #clearbet {
         font-size: 3vh;
-        width: 15vh;
+        width: 17vh;
     }
     #bmoney {font-size: 4vh}
 
@@ -671,5 +673,13 @@ p,li {
     #review {font-size: 4vh;}
 
     #welcome{font-size: 6vh}
+
+    .scorekeeper, .insurance {
+        font-size: 2vh;
+        width: 7vh;
+        height: 7vh;
+    }
+    #blackjack-title {font-size: 4vh};
+    #go-back {font-size: 3vh;}
 }
 

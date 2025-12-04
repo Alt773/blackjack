@@ -1,0 +1,23 @@
+Készítő neve: Nagy Barnabás
+Url: https://alt773.github.io/blackjack/
+Weboldal témájának rövid leírása: Blackjack szerencsejáték, minél közelebbi megvalósítása az eredeti szabályokhoz. Többi oldal a szabályok leírása valamint egy faux értékelési felület.
+Javascript helye: A blackjack játékban, kártyák random generálása, azok felépítése a html oldalon, a játékos pénzének követése, bizonyos lehetőségek játék közben, az "Insurance" és "Double Down" csak akkor jelennek meg, ha van rá pénze a játékosnak.
+Egyedi font: https://fonts.google.com/specimen/Roboto
+Külső forrás: 
+https://www.flaticon.com/free-icon/king_12427618
+https://www.flaticon.com/free-icon/king_12427625
+https://www.flaticon.com/free-icon/queen_12427636
+https://www.flaticon.com/free-icon/queen_12427647
+https://www.flaticon.com/free-icon/jack_12427658
+https://www.flaticon.com/free-icon/jack_12427669
+https://www.flaticon.com/free-icon/spade_12427702
+https://www.flaticon.com/free-icon/diamond_12427615
+https://www.flaticon.com/free-icon/club_12427616
+https://www.flaticon.com/free-icon/heart_12427617
+
+https://www.pngall.com/wp-content/uploads/15/Poker-Chips-Gaming-Accessories-PNG-File.png
+
+https://www.nicepng.com/maxp/u2w7w7r5w7u2o0q8/
+https://www.vecteezy.com/png/22947687-number-21-gold-luxury
+
+Ezenkívül használtam AI-t, hogy rendezetteb legyen a kód és a w3schools.com-ot amikor valamire rá akartam jönni
