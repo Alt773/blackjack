@@ -187,6 +187,11 @@ function deal() {
             insButton.forEach(el => el.style.visibility ="visible");
         }
     }
+
+    
+    chipsContainer.classList.remove("chips-visible");
+    chipsContainer.classList.add("chips-hidden");
+
     
     if (calculateScore(playerCards) == 21 && calculateScore(dealerCards) != 21) {
         document.getElementById("end").innerHTML = "You got Blackjack";
@@ -348,6 +353,10 @@ function endReset() {
     document.getElementById("chips").style.visibility = "visible";
     bbottomContainer.classList.remove("bbottom-collapsing");
     bbottomContainer.classList.add("bbottom-expanding");
+    
+    chipsContainer.classList.add("chips-visible");
+    chipsContainer.classList.remove("chips-hidden");
+
     dealerScorekeeper();
 }
 
@@ -367,6 +376,7 @@ function tempWhileNoDatabase() {
     } 
 
 }
+
 
 
 
