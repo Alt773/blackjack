@@ -179,9 +179,6 @@ function deal() {
     bbottomContainer.classList.remove("bbottom-expanding");
     bbottomContainer.classList.add("bbottom-collapsing");
 
-    chipsContainer.classList.remove("chips-visible");
-    chipsContainer.classList.add("chips-hidden");
-
     if (dealerCards[0].rank === "A") {
         if (playerMoney - Math.round(betAmount/2) >= 0){
             playb.forEach(el => el.style.visibility ="hidden");
@@ -189,13 +186,11 @@ function deal() {
             endMsg.innerHTML = `Buy Insurance?<br>${Math.round(betAmount/2)} $`;
             insButton.forEach(el => el.style.visibility ="visible");
         }
-
     }
     
     if (calculateScore(playerCards) == 21 && calculateScore(dealerCards) != 21) {
         document.getElementById("end").innerHTML = "You got Blackjack";
         playerMoney += Math.round(1.5*betAmount)
-
 
         endReset()
     }
@@ -204,7 +199,6 @@ function deal() {
 
         endReset()
     }
-
     if (playerMoney - betAmount < 0) {document.getElementById("double").style.visibility ="hidden"}
 }
 
@@ -228,24 +222,16 @@ function insYes() {
         if (calculateScore(playerCards) == 21) {
             playerMoney -= insurance
             playerMoney += 3*insurance + betAmount
-            
-            
-            document.getElementById("end").innerHTML = "Push";
-
-
+            document.getElementById("end").innerHTML = "Pushed";
             endReset()
         }
         else {
             playerMoney -= insurance
             playerMoney += 3*insurance
-
             document.getElementById("end").innerHTML = "Dealer's Blackjack";
-
-
             endReset()
         }
     } else {playerMoney -= insurance}
-
     
     document.getElementById("bmoney").innerHTML = `Bank: ${playerMoney} $`;
     document.getElementById("bbet").innerHTML = `Bet:<br>${betAmount} $`;
@@ -262,26 +248,18 @@ function insNo() {
         if (calculateScore(playerCards) == 21) {
             playerMoney -= insurance
             playerMoney += 2*betAmount
-            
-            
-            document.getElementById("end").innerHTML = "Push";
-
+            document.getElementById("end").innerHTML = "Pushed";
             endReset()
         }
         else {
             playerMoney -= insurance
             playerMoney += 2*insurance
-
             document.getElementById("end").innerHTML = "Dealer's Blackjack";
-
             endReset()
         }
     } else {playerMoney -= insurance}
-
-    
     document.getElementById("bmoney").innerHTML = `Bank: ${playerMoney} $`;
     document.getElementById("bbet").innerHTML = `Bet:<br>${betAmount} $`;
-
 }
 
 function hit() {
@@ -290,8 +268,6 @@ function hit() {
     scorekeeper.innerHTML = `${calculateScore(playerCards)}`
     if (calculateScore(playerCards) > 21) {
         endMsg.innerHTML = "Busted!";
-
-
         endReset()
     }   else if (calculateScore(playerCards) == 21) {
         stand()
@@ -372,8 +348,6 @@ function endReset() {
     document.getElementById("chips").style.visibility = "visible";
     bbottomContainer.classList.remove("bbottom-collapsing");
     bbottomContainer.classList.add("bbottom-expanding");
-    chipsContainer.classList.remove("chips-hidden");
-    chipsContainer.classList.add("chips-visible");
     dealerScorekeeper();
 }
 
@@ -393,6 +367,7 @@ function tempWhileNoDatabase() {
     } 
 
 }
+
 
 
 
