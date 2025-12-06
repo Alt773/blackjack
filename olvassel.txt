@@ -20,4 +20,4 @@ https://www.pngall.com/wp-content/uploads/15/Poker-Chips-Gaming-Accessories-PNG-
 https://www.nicepng.com/maxp/u2w7w7r5w7u2o0q8/
 https://www.vecteezy.com/png/22947687-number-21-gold-luxury
 
-Ezenkívül használtam AI-t, hogy rendezetteb legyen a kód és a w3schools.com-ot amikor valamire rá akartam jönni
+A review oldalon a checkbox input css-hez: https://moderncss.dev/pure-css-custom-checkbox-style/

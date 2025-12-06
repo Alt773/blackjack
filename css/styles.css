@@ -489,6 +489,269 @@ p,li {
     padding: 5px;
 }
 
+/*----------- Review ----------*/
+
+#review-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.rating {
+  display: flex;
+  flex-direction: row-reverse; /* Order 5 to 1 */
+  justify-content: flex-end; 
+  font-size: 0;
+}
+
+.rating input {
+  display: none;
+}
+
+.rating label {
+  cursor: pointer;
+  line-height: 30px;
+  font-size: 8vw;
+  color: #ccc;
+  transition: color 0.2s;
+  text-align: center;
+}
+
+.rating label:before {
+  content: "★"; 
+  display: block;
+}
+
+.rating input:checked ~ label:before {
+  color: gold; 
+  text-shadow: 0px 0px 5px goldenrod;
+}
+
+.rating label:hover:before,
+.rating label:hover ~ label:before {
+  color: gold;
+  text-shadow: 0px 0px 5px goldenrod;
+}
+
+#review-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 5vw;
+    margin-top: 15px
+}
+
+.userdata {
+    width: 70vw;
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+
+.userdata input, #title-input{ 
+    text-align: center;
+}
+
+.userdata input, #title-input, #desc-input {
+    background-color: rgb(225, 225, 225);
+    border: none;
+    border-radius: 6px;
+    padding: 5px;
+    font-size: 4vw;
+    outline: none;
+    color: rgb(35, 35, 35);
+}
+
+.userdata input:focus::placeholder, #desc-input:focus::placeholder, #title-input:focus::placeholder {
+    color: transparent;
+}
+.userdata input::placeholder, #desc-input::placeholder, #title-input::placeholder {
+    color: rgb(142, 142, 142);
+    transition: color 0.3s;
+}
+
+.name, .birthdate, .email {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding:5px;
+    gap: 5px;
+}
+
+#stars {
+    display: grid;
+    grid-template-areas: 
+        "title stars"
+        "desc desc";
+    grid-template-rows: 1fr 3fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+    width: 90vw;
+    justify-items: center;
+    align-items: center;
+    padding: 8px;
+    background-color: rgb(35, 35, 35);
+    border: 2px solid goldenrod;
+    border-radius: 10px;
+}
+
+#title {
+    grid-area: title
+}
+#rating {
+    grid-area: stars
+}
+#desc {
+    grid-area: desc;
+    align-self: center;
+    justify-self: center;
+    width: 100%;
+    height: 100%;
+}
+#desc-input {
+    width: 100%;
+    height: 100%;
+    word-break: break-word;
+}   
+
+#consent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: rgb(35, 35, 35);
+  margin: 0;
+  font: inherit;
+  color: goldenrod;
+  width: 1.15em;
+  height: 1.15em;
+  border: 0.15em solid currentColor;
+  border-radius: 0.15em;
+  transform: translateY(-0.075em);
+
+  display: grid;
+  place-content: center;
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  transform: scale(0);
+  transform-origin: bottom left;
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em var(--form-control-color);
+  background-color: goldenrod;
+}
+
+input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}
+
+.form-end {
+    display: flex;
+    justify-content: space-between;
+    gap: 5vw;
+}
+
+.form-end input {
+    background-color: goldenrod;
+    border: 2px solid rgb(35, 35, 35);
+    color: rgb(52, 52, 52);
+    font-size: 5vw;
+    padding: 5px;
+    border-radius: 10px;
+    transition: color 0.3s, border-color 0.3s, background-color 0.3s, transform 0.3s;
+}
+
+.form-end input:hover {
+    color: goldenrod;
+    background-color: rgb(35, 35, 35);
+    border-color: goldenrod;
+    transform: scale(1.1);
+}
+
+.no-resize {resize: none;}
+
+#all-reviews {
+    display: grid;
+    width:98vw;
+    grid-template-columns: 1fr 1fr;
+    margin: 20px 1vw 20px 1vw;
+    gap: 10px
+}
+
+#all-reviews li {
+    display: grid;
+    grid-template-areas:
+        "author author"
+        "title stars"
+        "desc desc";
+    background-color: rgb(35, 35, 35);
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr auto auto;
+    gap: 5px;
+    border: 2px solid goldenrod;
+    align-self: center;
+    border-radius: 10px;
+    font-size: 2vw;
+    transform-origin: top left;
+    transition: transform 0.3s ease;
+}
+
+#all-reviews li:hover {
+    transform: scale(1.6);
+}
+
+.review-author {
+    grid-area:author; 
+    text-align: center;
+    border-bottom: 2px solid goldenrod;
+    align-self: center;
+    padding: 5px
+}
+.review-title {
+    grid-area:title; 
+    text-align: center;
+    align-self: center;
+}
+.review-stars {
+    grid-area:stars; 
+    text-align: center;
+    display: flex;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+    color: #ccc;
+    font-size: 4vw;}
+
+.review-desc {
+    grid-area:desc;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    color: #f0f0f0;
+    padding: 5px;
+    font-size: 2vw;
+    border-top: 2px solid goldenrod
+}
+
+.star-filled {color: gold; text-shadow: 0px 0px 5px goldenrod;}
+
+.review-error {
+    text-align: center;
+    font-size: 5vw;
+    color: rgb(207, 96, 96)
+}
+
+#consent label {order: 2;}
+#consent input {order: 3;}
 /*----------- MEDIA QUERIES -----------*/
 
 @media (max-width: 700px) and (orientation: landscape) {
