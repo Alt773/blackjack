@@ -151,6 +151,7 @@ function deal() {
         document.getElementById("end").innerText = "You have to bet in order to play";
         return;
     }
+    
     document.getElementById("clearbet").style.visibility = "hidden";
 
     playerMoney -= betAmount

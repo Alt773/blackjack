@@ -656,8 +656,8 @@ input[type="checkbox"]:checked::before {
 
 .form-end {
     display: flex;
-    justify-content: space-between;
-    gap: 5vw;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .form-end input {
@@ -680,9 +680,9 @@ input[type="checkbox"]:checked::before {
 .no-resize {resize: none;}
 
 #all-reviews {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     width:98vw;
-    grid-template-columns: 1fr 1fr;
     margin: 20px 1vw 20px 1vw;
     gap: 10px
 }
@@ -695,19 +695,14 @@ input[type="checkbox"]:checked::before {
         "desc desc";
     background-color: rgb(35, 35, 35);
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr auto auto;
     gap: 5px;
     border: 2px solid goldenrod;
     align-self: center;
     border-radius: 10px;
-    font-size: 2vw;
-    transform-origin: top left;
-    transition: transform 0.3s ease;
+    font-size: 3.5vw;
+    width: 80%
 }
 
-#all-reviews li:hover {
-    transform: scale(1.6);
-}
 
 .review-author {
     grid-area:author; 
@@ -729,7 +724,8 @@ input[type="checkbox"]:checked::before {
     align-items: center;
     justify-content: center;
     color: #ccc;
-    font-size: 4vw;}
+    font-size: 5vw;
+}
 
 .review-desc {
     grid-area:desc;
@@ -738,7 +734,7 @@ input[type="checkbox"]:checked::before {
     border: none;
     color: #f0f0f0;
     padding: 5px;
-    font-size: 2vw;
+    font-size: 3.5vw;
     border-top: 2px solid goldenrod
 }
 
@@ -752,6 +748,7 @@ input[type="checkbox"]:checked::before {
 
 #consent label {order: 2;}
 #consent input {order: 3;}
+
 /*----------- MEDIA QUERIES -----------*/
 
 @media (max-width: 700px) and (orientation: landscape) {
@@ -804,6 +801,10 @@ input[type="checkbox"]:checked::before {
     }
 }
 
+@media (max-height: 800px) and (orientation: landscape) {
+    #blackjack-title {font-size: 5vh}
+    #go-back {font-size: 4vh;}
+}
 
 @media (min-width: 700px) {
     #blackjack-header {height: 100px;}
@@ -859,18 +860,19 @@ input[type="checkbox"]:checked::before {
 }
 }   
 
-@media (min-width: 1000px) and (min-height: 800px) {
+@media (min-width: 1000px) and (orientation: landscape) {
     
-    #go-back {
-        max-height: 80px;
-        font-size: 40px;
+    #go-back, #review {
+        font-size: 30px;
     }
-    #blackjack-title {font-size: 60px}
+    #blackjack-title, #welcome {font-size: 40px}
+
 
     .pcard {
         width: 150px;
         height: 200px;
     }
+    #blackjack-header {height: fit-content;}
 
     #playarea {height: auto;}
     .rank {font-size: 20px;}
@@ -913,6 +915,36 @@ input[type="checkbox"]:checked::before {
             grid-template-rows: auto 204px auto;
         }
     }
+
+    #review-form {
+        font-size: 30px;
+    }
+
+    .userdata input, #title-input, #desc-input {
+        font-size: 25px;
+    }
+
+    .rating label {font-size: 35px};
+
+    .form-end input {font-size: 25px};
+
+    #review-form {gap:30px};
+
+    #all-reviews li {
+        width: auto;
+        font-size: 25px;
+    }
+
+    #stars {width: fit-content;}
+
+    .review-desc {font-size: 25px; height: 200px;}
+
+    .review-stars {font-size: 35px;}
+
+    .userdata input {max-width: 500px; align-self: center;}
+
+    .review-error {font-size: 25px}
+
 }
 
 @media (orientation: landscape) {
@@ -932,18 +964,19 @@ input[type="checkbox"]:checked::before {
         height: 50vh;
         font-size: 5vh;
     }
-    
-    #review {font-size: 4vh;}
-
-    #welcome{font-size: 6vh}
 
     .scorekeeper, .insurance {
         font-size: 2vh;
         width: 7vh;
         height: 7vh;
     }
-    #blackjack-title {font-size: 4vh};
-    #go-back {font-size: 3vh;}
+
+    #all-reviews {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
 }
 
 

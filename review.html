@@ -60,23 +60,17 @@
         </div>
 
         <div class="form-end">
-            <input type="button" onclick="newData()" value = "Submit">
-            <input type="reset" value="Reset" onclick ="resetErrors()">
+            <div>
+                <label for="submit">Submit Review</label>
+                <input type="button" id = "submit" value="Submit" onclick="newData()">
+            </div>
+            <div>
+                <label for="reset">Reset Review</label>
+                <input type="reset" id ="reset" value="Reset" onclick ="resetErrors()">
+            </div>
         </div>
     </form>
     <ul id = all-reviews>
-        <li>
-            <div class="review-author">AAAAAAAAAAAA</div>
-            <div class="review-title">AAAAAAAAAAAAAA</div>
-            <div class="review-stars">
-                <span class="star-filled">★</span>
-                <span class="star-filled">★</span>
-                <span class="star-filled">★</span>
-                <span class="star-filled">★</span>
-                <span class="star-unfilled">★</span>
-            </div>
-            <textarea class="review-desc no-resize">AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</textarea>
-        </li>
     </ul>
 </body>
 </html>
