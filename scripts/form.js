@@ -126,7 +126,7 @@ function appendReview(user) {
         userReview.appendChild(reviewDesc)
     }
 
-    document.getElementById("all-reviews").appendChild(userReview)
+    document.getElementById("all-reviews").appendChild(userReview)  
 }
 
 function resetErrors() {
